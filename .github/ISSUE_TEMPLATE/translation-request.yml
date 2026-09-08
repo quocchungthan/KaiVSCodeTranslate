@@ -1,0 +1,55 @@
+name: Translation request / Yêu cầu dịch sách
+description: Ask for an English technical book to be translated into Vietnamese.
+title: "[Translation] <book title>"
+labels: ["translation-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the request. I run the pipeline locally and reply in this issue with the Vietnamese output alongside the English source sections.
+
+        *Cảm ơn bạn. Tôi sẽ chạy pipeline trên máy cục bộ và trả lời ngay trong issue này với bản tiếng Việt kèm phần tiếng Anh gốc.*
+
+  - type: input
+    id: book
+    attributes:
+      label: Book title, author, edition / Tên sách, tác giả, phiên bản
+      placeholder: System Design Interview — Alex Xu, Vol. 1
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope / Phạm vi
+      description: Whole book, or specific chapters and page ranges?
+      placeholder: Chapters 1-5, or the whole book
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why Vietnamese / Lý do cần bản tiếng Việt
+      description: Who benefits and what you plan to use it for.
+    validations:
+      required: true
+
+  - type: textarea
+    id: terminology
+    attributes:
+      label: Terminology preferences / Ưu tiên thuật ngữ
+      description: Terms to keep in English, or preferred Vietnamese equivalents.
+      placeholder: Keep "load balancer", "consistent hashing", "throughput" in English.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights / Bản quyền
+      options:
+        - label: I own a legal copy of this book, or it is openly licensed.
+          required: true
+        - label: I understand the source PDF is never committed to this repository.
+          required: true
