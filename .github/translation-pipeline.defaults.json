@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "pipelineVersion": "1.0.0",
+  "language": {
+    "source": "auto",
+    "target": "vi-VN"
+  },
+  "retries": {
+    "maximumStageAttempts": 3,
+    "maximumChunkAttempts": 3
+  },
+  "state": {
+    "lockTimeoutSeconds": 30
+  },
+  "quality": {
+    "maximumHeadingCountDriftPercent": 10
+  },
+  "chunking": {
+    "targetCharacters": 18000,
+    "maximumCharacters": 26000,
+    "minimumCharacters": 4000,
+    "codeFenceAware": true,
+    "preferHeadingLevels": [
+      1,
+      2,
+      3
+    ]
+  },
+  "rendering": {
+    "pageSize": "A4",
+    "marginMillimeters": 22,
+    "bodyFont": "Noto Serif",
+    "sansFont": "Noto Sans",
+    "monoFont": "Noto Sans Mono",
+    "pdfEngine": "typst"
+  },
+  "toolchain": {
+    "docling": {
+      "version": "2.34.0",
+      "license": "MIT",
+      "source": "https://github.com/docling-project/docling"
+    },
+    "tesseract": {
+      "version": "5.5.0",
+      "license": "Apache-2.0",
+      "source": "https://github.com/tesseract-ocr/tesseract"
+    },
+    "pandoc": {
+      "version": "3.6.4",
+      "license": "GPL-2.0-or-later",
+      "source": "https://github.com/jgm/pandoc"
+    },
+    "typst": {
+      "version": "0.13.1",
+      "license": "Apache-2.0",
+      "source": "https://github.com/typst/typst"
+    },
+    "fonts": {
+      "version": "2.015",
+      "license": "OFL-1.1",
+      "source": "https://github.com/notofonts/latin-greek-cyrillic"
+    }
+  }
+}
