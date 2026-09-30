@@ -101,6 +101,10 @@ try {
 
     $next = & (Join-Path $PSScriptRoot 'Get-NextTranslationAction.ps1') -RepositoryRoot $testRoot -SkipDiscovery
     Assert-TranslationTest ($next.action -eq 'translate-chunk' -and $next.chunkId -eq '0001') 'The first pending chunk is selected.'
+    $scoped = & (Join-Path $PSScriptRoot 'Get-NextTranslationAction.ps1') -RepositoryRoot $testRoot -SkipDiscovery -JobId $jobId
+    Assert-TranslationTest ($scoped.jobId -eq $jobId -and $scoped.chunkId -eq '0001') 'Job-scoped next action selects the requested job.'
+    $otherScope = & (Join-Path $PSScriptRoot 'Get-NextTranslationAction.ps1') -RepositoryRoot $testRoot -SkipDiscovery -JobId 'another-job'
+    Assert-TranslationTest ($otherScope.action -eq 'idle') 'Job-scoped next action ignores other jobs.'
 
     & (Join-Path $PSScriptRoot 'Update-TranslationChunkState.ps1') -RepositoryRoot $testRoot -JobId $jobId -ChunkId '0001' -Status running | Out-Null
     & (Join-Path $PSScriptRoot 'Update-TranslationChunkState.ps1') -RepositoryRoot $testRoot -JobId $jobId -ChunkId '0001' -Status failed -ErrorMessage 'Expected chunk retry test failure.' | Out-Null

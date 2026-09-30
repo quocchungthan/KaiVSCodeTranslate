@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$RepositoryRoot,
+    [string]$JobId,
     [switch]$SkipDiscovery
 )
 
@@ -26,6 +27,7 @@ if (-not (Test-Path -LiteralPath $jobsRoot -PathType Container)) {
 $states = @(Get-ChildItem -LiteralPath $jobsRoot -Filter 'job.json' -File -Recurse |
     ForEach-Object { Read-TranslationJobState -Path $_.FullName } |
     Where-Object { $_.status -notin @('completed', 'superseded') } |
+    Where-Object { [string]::IsNullOrWhiteSpace($JobId) -or $_.jobId -eq $JobId } |
     Sort-Object { $_.source.relativePath }, createdUtc)
 
 $blocked = @()

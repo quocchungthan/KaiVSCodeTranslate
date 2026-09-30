@@ -100,6 +100,10 @@ Sanity-check the pipeline itself (no external dependencies):
 
 More detail: [.github/TRANSLATION_WORKFLOW.md](.github/TRANSLATION_WORKFLOW.md)
 
+### Run as a headless engine
+
+[`engine/`](engine/README.md) wraps this pipeline in a .NET service for a remote backend. It exposes one gRPC port protected by a secret key, where the backend can upload a PDF (and get back its SHA-256), check status and queue position, list jobs, and download results. A per-minute scheduler assigns queued books to agents, and each agent drives Huong through the GitHub Copilot SDK in autopilot mode. Scope a single job manually with `Get-NextTranslationAction.ps1 -JobId <job-id>`.
+
 ---
 
 ## Request a translation / Yêu cầu dịch sách

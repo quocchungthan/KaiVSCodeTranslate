@@ -1,3 +1,6 @@
 _pdfs/
 _processing/
 _output/
+engine/**/bin/
+engine/**/obj/
+engine/**/TestResults/

@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Copilot SDK exposes autopilot/mode APIs as [Experimental]. -->
+    <NoWarn>$(NoWarn);GHCP001;GHCP002;GHCP003</NoWarn>
+  </PropertyGroup>
+</Project>
